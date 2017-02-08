@@ -1,6 +1,7 @@
 class BankAccount:
-    def __init__(self):
+    def __init__(self, interest_rate=0.02):
         self.balance = 0
+        self.interest_rate = interest_rate
 
     def balance(self):
         return self.balance
@@ -14,7 +15,7 @@ class BankAccount:
         return self.balance
 
     def accumulate_interest(self):
-        self.balance = self.balance*1.02
+        self.balance = self.balance * (1 + self.interest_rate)
         return self.balance
 
 class ChildrensAccount(BankAccount):
@@ -22,6 +23,7 @@ class ChildrensAccount(BankAccount):
       super().__init__()
 
   def accumulate_interest(self):
+      self.balance += 10
       return self.balance
 
 class OverdraftAccount(BankAccount):
@@ -29,9 +31,7 @@ class OverdraftAccount(BankAccount):
         super().__init__()
 
     def withdraw(self, amount):
-        diff = self.balance - amount
-        print(diff)
-        if diff < 0:
+        if self.balance - amount < 0:
             self.balance -= 40
             return self.balance
         else:
@@ -42,7 +42,7 @@ class OverdraftAccount(BankAccount):
         if self.balance < 0:
             return self.balance
         else:
-            self.balance = self.balance*1.02
+            self.balance = self.balance * (1 + self.interest_rate)
             return self.balance
 
 
