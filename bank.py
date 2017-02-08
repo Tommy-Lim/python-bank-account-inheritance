@@ -1,5 +1,21 @@
 class BankAccount:
-  pass
+    def __init__(self):
+        self.balance = 0
+
+    def balance(self):
+        return self.balance
+
+    def withdraw(self, amount):
+        self.balance -= amount
+        return self.balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+    def accumulate_interest(self):
+        self.balance = self.balance*1.02
+        return self.balance
 
 class ChildrensAccount:
   pass
